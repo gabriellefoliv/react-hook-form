@@ -4,8 +4,11 @@ import { useState } from "react";
 import { useForm, useFieldArray } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { supabase } from "./lib/supabase";
 
 const createUserFormSchema = z.object({
+  avatar: z.instanceof(FileList)
+    .transform(list => list.item(0)!),
   name: z.string()
     .min(1, "O nome é obrigatório")
     .transform(name => {
@@ -42,7 +45,8 @@ export function App() {
     append({ title: '', knowledge: 0 })
   }
 
-  function createUser(data: CreateUserFormData) {
+  async function createUser(data: CreateUserFormData) {
+    await supabase.storage.from('forms-react').upload(data.avatar.name, data.avatar)
     setOutput(JSON.stringify(data, null, 2))
   }
 
@@ -50,7 +54,18 @@ export function App() {
     <main className="h-screen bg-zinc-50 flex justify-center items-center flex-col gap-10">
       <form
         onSubmit={handleSubmit(createUser)} 
-        className="flex flex-col gap-4 w-full max-w-xs">
+        className="flex flex-col gap-4 w-full max-w-xs"
+      >
+        <div className="flex flex-col gap-1">
+          <label htmlFor="name">Avatar</label>
+          <input 
+            type="file" 
+            accept="image/*"
+            {...register('avatar')}
+          />
+          {errors.avatar && <span className="text-red-500 text-sm">{errors.avatar.message}</span>}
+        </div>
+
         <div className="flex flex-col gap-1">
           <label htmlFor="name">Nome</label>
           <input 
