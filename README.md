@@ -1,8 +1,12 @@
-// To-do
-// [] Validação / transformação
-// [] Field Arrays
-// [] Upload de arquivos
-// [] Composition Pattern
+_Banco do supabase deletado. Credenciais em supabase.ts são inuteis_
+
+Coisas a se fazer
+[x] Validação / transformação
+[x] Field Arrays
+[x] Upload de arquivos
+[] Composition Pattern
+
+Validação & transformação feitas em Zod.
 
 Field Array:
 Formulários que é possível incluir mais informações de um campo.
@@ -11,53 +15,11 @@ Cada módulo tinha várias aulas, só que não um número certo.
 Podia ser 5 aulas, 10 aulas, 15 aulas...
 O usuário consegue adicionar quantas aulas quiser (adicionar ou remover mais desses campos)
 
-# React + TypeScript + Vite
+Upload de arquivos:
+Parte do avatar, upload num storage do supabase.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from "eslint-plugin-react";
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: "18.3" } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs["jsx-runtime"].rules,
-  },
-});
-```
+Composition Pattern:
+Separação de componentes
+Ex: <Field.Input>
+<Field.Label>
+<Field.Button>
